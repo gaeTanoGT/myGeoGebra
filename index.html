@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
+
+        <title>myGeoGebra</title>
+    </head>
+
+    <body>
+        <h1>myGeoGebra</h1>
+        <p id="p1" style="color: red;"></p>
+        <br>
+        <label for="inputField">Inseriscsi funzione: </label>
+        <input type="text" id="inputField">
+        <button id="bottone">invio</button><br>
+        <br>
+        x1:<input type="number" id="x1">
+        x2:<input type="number" id="x2"><br>
+        <canvas width="400" height="400" id="mioCanvas" 
+        style="border:1px solid #000000;">
+        <br>
+        <button id="buttonClear" onclick="pulisci()">pulisci</button>
+
+        <script src="index.js"></script>
+    </body>
+</html>
