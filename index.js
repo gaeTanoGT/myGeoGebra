@@ -1,6 +1,7 @@
 //const math = require("mathjs");
 let n;
 let funzione;
+let fx;
 let k = 10000;     //indice di precisione
 
 function pulisci(){
@@ -17,6 +18,7 @@ const inner = document.getElementById("bottone").onclick = function(){
     
     let x1 = document.getElementById("x1").value;
     let x2 = document.getElementById("x2").value;
+    fx = document.getElementById("fx").value;
     
     console.log(`x11: ${x1}  --  x22: ${x2}`);
 
@@ -39,7 +41,7 @@ function trovaSoluzione(ax, bx){
     let by = math.eval(strFunzione);
 
     if(ay * by > 0){
-        console.log("Errore");
+        console.log("Errore");      //cambio verso di crescenza
         return null;
     }
 
@@ -55,10 +57,11 @@ function trovaSoluzione(ax, bx){
     
     strFunzione = funzione.replaceAll("x", cx);
     let cy = math.eval(strFunzione);
+    console.log("cy: ", cy);
 
-    if(((cy > 0 && by < 0) || (cy < 0 && by > 0)) && n > 0){
+    if(((cy > fx && by < fx) || (cy < fx && by > fx)) && n > 0){
         return trovaSoluzione(cx, bx);
-    } else if(((cy > 0 && by > 0) || (cy < 0 && by < 0)) && n > 0){
+    } else if(((cy > fx && by > fx) || (cy < fx && by < fx)) && n > 0){
         return trovaSoluzione(ax, cx);
     } else {
         return cx;
