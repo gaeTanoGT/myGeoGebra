@@ -18,7 +18,7 @@ const inner = document.getElementById("bottone").onclick = function(){
     
     let x1 = document.getElementById("x1").value;
     let x2 = document.getElementById("x2").value;
-    let fx = document.getElementById("fx").value;
+    fx = document.getElementById("fx").value;
     
     console.log(`x11: ${x1}  --  x22: ${x2}`);
 
@@ -41,7 +41,7 @@ function trovaSoluzione(ax, bx){
     let by = math.eval(strFunzione);
 
     if(ay * by > 0){
-        console.log("Errore");
+        console.log("Errore");      //cambio verso di crescenza
         return null;
     }
 
