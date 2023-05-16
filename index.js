@@ -57,6 +57,7 @@ function trovaSoluzione(ax, bx){
     
     strFunzione = funzione.replaceAll("x", cx);
     let cy = math.eval(strFunzione);
+    console.log("cy: ", cy);
 
     if(((cy > fx && by < fx) || (cy < fx && by > fx)) && n > 0){
         return trovaSoluzione(cx, bx);
