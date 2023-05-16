@@ -2,7 +2,7 @@
 let n;
 let funzione;
 let fx;
-let k = 10000;     //indice di precisione
+let k = 100000;     //indice di precisione
 
 function pulisci(){
     console.log("ho pulito");
@@ -32,6 +32,7 @@ const inner = document.getElementById("bottone").onclick = function(){
 }
 
 function trovaSoluzione(ax, bx){
+    console.log("analizzo: ", ax, bx);
     n--;
 
     let strFunzione = funzione.replaceAll("x", ax);
@@ -40,7 +41,10 @@ function trovaSoluzione(ax, bx){
     strFunzione = funzione.replaceAll("x", bx);
     let by = math.eval(strFunzione);
 
-    if(ay * by > 0){
+    console.log("result ay by: ", ay, by);
+
+    //se i risultati delle funzioni ax e bx non sono più gli estremi della soluzione di fx
+    if((ay > fx || by < fx) && (ay < fx || by > fx)){        
         console.log("Errore");      //cambio verso di crescenza
         return null;
     }
@@ -48,16 +52,23 @@ function trovaSoluzione(ax, bx){
     let cx;
     if(ax < bx){
         cx = (Math.abs(ax - bx) / 2) + Number(ax);
+        cx = Number(cx.toFixed(Math.log10(k)));
     }
     else{
         cx = (Math.abs(ax - bx) / 2) + Number(bx);
+        cx = Number(cx.toFixed(Math.log10(k)));
     }
 
     console.log("cx: ", cx);
     
     strFunzione = funzione.replaceAll("x", cx);
     let cy = math.eval(strFunzione);
-    console.log("cy: ", cy);
+    cy = Number(cy.toFixed(Math.log10(k)));
+    console.log("cy: ", cy, fx);
+
+    if(cy == fx){
+        return cx;
+    }
 
     if(((cy > fx && by < fx) || (cy < fx && by > fx)) && n > 0){
         return trovaSoluzione(cx, bx);
