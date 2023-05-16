@@ -1,4 +1,4 @@
-//const math = require("mathjs");
+
 let n;
 let funzione;
 let fx;
