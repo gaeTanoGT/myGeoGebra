@@ -3,6 +3,9 @@ let n;
 let funzione;
 let fx;
 let k = 100000;     //indice di precisione
+let min = k;
+let max = -k;
+let x1, x2;
 
 function pulisci(){
     console.log("ho pulito");
@@ -13,12 +16,14 @@ function pulisci(){
 
 const inner = document.getElementById("bottone").onclick = function(){
     funzione = document.getElementById("inputField").value;
+    
+    x1 = document.getElementById("x1").value;
+    x2 = document.getElementById("x2").value;
+    fx = document.getElementById("fx").value;
 
     disegnaFunzione();
-    
-    let x1 = document.getElementById("x1").value;
-    let x2 = document.getElementById("x2").value;
-    fx = document.getElementById("fx").value;
+    calcolaMin();
+    calcolaMax();
     
     console.log(`x11: ${x1}  --  x22: ${x2}`);
 
@@ -27,12 +32,15 @@ const inner = document.getElementById("bottone").onclick = function(){
     
     let soluzione = trovaSoluzione(x1, x2)
     console.log(soluzione);
-    document.getElementById("p1").innerHTML = `x: ${soluzione}`;
+    document.getElementById("p1").innerHTML = 
+    `x: ${soluzione}<br>
+     min: ${min}<br>
+     max: ${max}`;
 
 }
 
 function trovaSoluzione(ax, bx){
-    console.log("analizzo: ", ax, bx);
+    console.log("analizzo: ", ax, " - ", bx);
     n--;
 
     let strFunzione = funzione.replaceAll("x", ax);
@@ -40,8 +48,6 @@ function trovaSoluzione(ax, bx){
 
     strFunzione = funzione.replaceAll("x", bx);
     let by = math.eval(strFunzione);
-
-    console.log("result ay by: ", ay, by);
 
     //se i risultati delle funzioni ax e bx non sono più gli estremi della soluzione di fx
     if((ay > fx || by < fx) && (ay < fx || by > fx)){        
@@ -58,13 +64,12 @@ function trovaSoluzione(ax, bx){
         cx = (Math.abs(ax - bx) / 2) + Number(bx);
         cx = Number(cx.toFixed(Math.log10(k)));
     }
-
-    console.log("cx: ", cx);
     
     strFunzione = funzione.replaceAll("x", cx);
     let cy = math.eval(strFunzione);
     cy = Number(cy.toFixed(Math.log10(k)));
-    console.log("cy: ", cy, fx);
+    
+    console.log(`cx: ${cx} - cy${cy}`)
 
     if(cy == fx){
         return cx;
@@ -104,4 +109,30 @@ function disegnaFunzione(){
         contesto.fillRect((i) * z + 200, (-y) * z + 200, 0.5, 0.5);
         contesto.stroke();
     }
+}
+
+function calcolaMin(){
+    let a = Math.min(x1, x2);
+    let b = Math.max(x1, x2);
+    
+    for(let j = a; j < b; j += 0.01){
+        let strFunzione = funzione.replaceAll("x", j);
+        let y = math.eval(strFunzione);
+        min = Math.min(Number(y), min);
+    }
+
+    min = Number(min.toFixed(Math.log10(k)));
+}
+
+function calcolaMax(){
+    let a = Math.min(x1, x2);
+    let b = Math.max(x1, x2);
+
+    for(let i = a; i < b; i += 0.01){
+        let strFunzione = funzione.replaceAll("x", i);
+        let y = math.eval(strFunzione);
+        max = Math.max(Number(y), max);
+    }
+
+    max = Number(max.toFixed(Math.log10(k)));
 }
