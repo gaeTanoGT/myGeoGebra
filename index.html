@@ -10,7 +10,7 @@
             let n;
             let funzione;
             let fx;
-            let k = 100000;     //indice di precisione
+            let k = 100000;     //indice di precisione - il valore del suo log in base 10 corrisponde al numero di decimali che può avere al massimo la soluzione
             let min;
             let max;
             let x1, x2;
@@ -38,11 +38,12 @@
                 
                 console.log(`x1: ${x1}  --  x2: ${x2}`);
 
-                n = Math.log2(Math.abs(x1 - x2) * 500 * k);
+                n = Math.log2(Math.abs(x1 - x2) * 500 * k);     //numero di iterazioni massime
                 console.log("n: ", n);
                 
                 let soluzione = trovaSoluzione(x1, x2)
                 console.log(soluzione);
+
                 document.getElementById("p1").innerHTML = 
                 `x: ${soluzione}<br>
                 min: ${min}<br>
@@ -54,7 +55,7 @@
                 n--;
 
                 let strFunzione = funzione.replaceAll("x", "(" + ax + ")");
-                let ay = math.eval(strFunzione);
+                let ay = math.eval(strFunzione);        //ay prende il valore della funzione nel punto ax
 
                 strFunzione = funzione.replaceAll("x", "(" + bx + ")");
                 let by = math.eval(strFunzione);
@@ -86,9 +87,9 @@
 
                 console.log(`cx: ${cx} - cy${cy}`)
 
-                if(((cy > fx && by < fx) || (cy < fx && by > fx)) && n > 0){
+                if(((cy > fx && by < fx) || (cy < fx && by > fx)) && n > 0){            //se fx si trova nella seconda metà del range ax - bx
                     return trovaSoluzione(cx, bx);
-                } else if(((cy > fx && by > fx) || (cy < fx && by < fx)) && n > 0){
+                } else if(((cy > fx && by > fx) || (cy < fx && by < fx)) && n > 0){     //se fx si trova nella prima metà del range ax - bx
                     return trovaSoluzione(ax, cx);
                 } else {
                     if(cy == fx){
@@ -115,7 +116,7 @@
                 contesto.strokeStyle = "#9e9190";
                 contesto.stroke();
 
-                for(let i = -10; i < 10; i += 0.01){
+                for(let i = -10; i < 10; i += 0.01){        //scorro le x
                     let x = "(" + i + ")";
                     let strFunzione = funzione.replaceAll("x", x);
                     let y = math.eval(strFunzione);
