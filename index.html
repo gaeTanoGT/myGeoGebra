@@ -92,11 +92,13 @@
                 } else if(((cy > fx && by > fx) || (cy < fx && by < fx)) && n > 0){     //se fx si trova nella prima metà del range ax - bx
                     return trovaSoluzione(ax, cx);
                 } else {
-                    if(cy == fx){
+                    return cx;
+
+                    /*if(cy == fx){
                         return cx;
                     }else{
                         return null;
-                    }
+                    }*/
                 }
             }
 
