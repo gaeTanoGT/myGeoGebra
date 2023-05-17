@@ -36,7 +36,7 @@
                 calcolaMin();
                 calcolaMax();
                 
-                console.log(`x11: ${x1}  --  x22: ${x2}`);
+                console.log(`x1: ${x1}  --  x2: ${x2}`);
 
                 n = Math.log2(Math.abs(x1 - x2) * 500 * k);
                 console.log("n: ", n);
@@ -69,16 +69,17 @@
                 let cx;
                 if(ax < bx){
                     cx = (Math.abs(ax - bx) / 2) + Number(ax);
-                    cx = Number(cx.toFixed(Math.log10(k)));
+                    cx = cx.toFixed(Math.log10(k));
                 }
                 else{
                     cx = (Math.abs(ax - bx) / 2) + Number(bx);
-                    cx = Number(cx.toFixed(Math.log10(k)));
+                    cx = cx.toFixed(Math.log10(k));
                 }
                 
                 strFunzione = funzione.replaceAll("x", cx);
                 let cy = math.eval(strFunzione);
-                cy = Number(cy.toFixed(Math.log10(k)));
+                
+                cy = cy.toFixed(Math.log10(k));
                 
                 console.log(`cx: ${cx} - cy${cy}`)
 
@@ -96,7 +97,7 @@
             }
 
             function disegnaFunzione(){
-                let z = 20;  //zoom canvas
+                let z = 20;                 //zoom canvas
 
                 var tag = document.getElementById("mioCanvas");
                 contesto = tag.getContext("2d");
@@ -112,7 +113,8 @@
                 contesto.stroke();
 
                 for(let i = -10; i < 10; i += 0.01){
-                    let strFunzione = funzione.replaceAll("x", i);
+                    let x = "(" + i + ")";
+                    let strFunzione = funzione.replaceAll("x", x);
                     let y = math.eval(strFunzione);
 
                     contesto.beginPath();
@@ -127,12 +129,13 @@
                 let b = Math.max(x1, x2);
                 
                 for(let j = a; j <= b; j += 0.01){
-                    let strFunzione = funzione.replaceAll("x", j);
+                    let x = "(" + j + ")";
+                    let strFunzione = funzione.replaceAll("x", x);
                     let y = math.eval(strFunzione);
-                    min = Math.min(Number(y), min);
+                    min = Math.min(y, min);
                 }
 
-                min = Number(min.toFixed(Math.log10(k)));
+                min = min.toFixed(Math.log10(k));
             }
 
             function calcolaMax(){
@@ -140,12 +143,13 @@
                 let b = Math.max(x1, x2);
 
                 for(let i = a; i <= b; i += 0.01){
-                    let strFunzione = funzione.replaceAll("x", i);
+                    let x = "(" + i + ")";
+                    let strFunzione = funzione.replaceAll("x", x);
                     let y = math.eval(strFunzione);
-                    max = Math.max(Number(y), max);
+                    max = Math.max(y, max);
                 }
 
-                max = Number(max.toFixed(Math.log10(k)));
+                max = max.toFixed(Math.log10(k));
             }
         </script>
 
@@ -163,7 +167,6 @@
 
     <body>
         <h1>myGeoGebra</h1>
-        
         <div id="id">
             <h3>by Torrisi Gaetano</h3><br>
             <a href="https://mathjs.org/docs/expressions/syntax.html#functions">Come inserire la funzione</a><br>
