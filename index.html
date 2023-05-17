@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
+        
         <script>
             let n;
             let funzione;
@@ -14,13 +14,6 @@
             let min;
             let max;
             let x1, x2;
-
-            function pulisci(){
-                console.log("ho pulito");
-                var tag = document.getElementById("mioCanvas");
-                contesto = tag.getContext("2d");
-                contesto.clearRect(0, 0, 400, 400);
-            }
 
             function bottone(){
                 funzione = document.getElementById("inputField").value;
@@ -156,33 +149,36 @@
         <title>myGeoGebra</title>
 
         <style>
-            div {text-align: center;}
-            input {margin-bottom: 5px; margin-left: 2px;}
+            div {
+                text-align: center;
+            }
+            input {
+                margin-bottom: 5px; 
+                margin-left: 2px;
+            }
             #id{
                 text-align: right;
             }
         </style>
-        
     </head>
 
     <body>
         <h1>myGeoGebra</h1>
         <div id="id">
             <h3>by Torrisi Gaetano</h3><br>
+            <hr>
             <a href="https://mathjs.org/docs/expressions/syntax.html#functions">Come inserire la funzione</a><br>
         </div>
         <br>
         <div class="container">
             <label for="inputField">Inseriscsi funzione: </label>
             <input type="text" id="inputField"><br>
-            x1:<input type="number" id="x1"><br>
-            x2:<input type="number" id="x2"><br>
-            f(x) =<input type="number" id="fx"><br>
+            <label for="x1">x1 = </label> <input type="number" id="x1"><br>
+            <label for="x2">x2 = </label> <input type="number" id="x2"><br>
+            <label for="fx">f(x)= </label><input type="number" id="fx"><br>
             <button id="bottone" onclick="bottone()">calcola</button><br><br>
-            <canvas width="400" height="400" id="mioCanvas" 
-            style="border:1px solid #000000;">
+            <canvas width="400" height="400" id="mioCanvas" style="border:1px solid #000000;">
             <br>
-            <hr>
         </div>
         <div>
             <p id="p1" style="color: red;"></p>
