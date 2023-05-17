@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
-        
+
         <script>
             let n;
             let funzione;
@@ -34,13 +34,18 @@
                 n = Math.log2(Math.abs(x1 - x2) * 500 * k);     //numero di iterazioni massime
                 console.log("n: ", n);
                 
-                let soluzione = trovaSoluzione(x1, x2)
-                console.log(soluzione);
+                try{
+                    let soluzione = trovaSoluzione(x1, x2);
+                    console.log(soluzione);
 
-                document.getElementById("p1").innerHTML = 
-                `x: ${soluzione}<br>
-                min: ${min}<br>
-                max: ${max}`;
+                    document.getElementById("p1").innerHTML = 
+                        `x: ${soluzione}<br>
+                        min: ${min}<br>
+                        max: ${max}`;
+                }catch(error){
+                    document.getElementById("p1").innerHTML = "Errore sintassi funzione";
+                    return;
+                }                
             }
 
             function trovaSoluzione(ax, bx){
